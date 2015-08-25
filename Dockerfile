@@ -4,5 +4,6 @@ MAINTAINER  "Mingcai SHEN <archsh@gmail.com>"
 
 ADD requirements.txt /
 
-RUN pip install -r /requirements.txt \
+RUN yum install -y  mysql-devel mysql-libs \
+	&& pip install -r /requirements.txt \
 	&& pip install circus chaussette waitress
