@@ -9,7 +9,7 @@ show_help() {
     bash     : Start a bash shell
     help     : Show this message
 
-    otherwise, default nginx server instance will start.
+    otherwise, default turbogears server instance will start.
     ==========================================================
     Docker Options:
     Volumes: 
