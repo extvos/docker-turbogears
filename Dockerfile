@@ -2,7 +2,7 @@ FROM extvos/python
 MAINTAINER  "Mingcai SHEN <archsh@gmail.com>"
 RUN apk update && apk add  --no-cache build-base linux-headers python-dev postgresql-client postgresql-libs py-mysqldb
 RUN pip install --upgrade pip virtualenv circus \
-	&& cd /opt \
+	&& mkdir -p /opt && cd /opt \
 	&& virtualenv tg2env \
 	&& . /opt/tg2env/bin/activate \
 	&& pip install tg.devtools gearbox-tools chaussette waitress \
