@@ -1,8 +1,15 @@
 FROM extvos/python
 MAINTAINER  "Mingcai SHEN <archsh@gmail.com>"
+RUN apk update && apk add alpine-sdk python-dev postgresql-client postgresql-libs py-mysqldb
+RUN pip install --upgrade pip virtualenv circus \
+	&& cd /opt \
+	&& virtualenv tg2env \
+	&& . /opt/tg2env/bin/activate \
+	&& pip install tg.devtools gearbox-tools chaussette waitress \
+	&& mkdir /opt/works /root/.pip
 
-RUN pip install circus tg.devtools gearbox-tools chaussette waitress \
-	&& mkdir /opt/works
+COPY pip.conf /root/.pip/pip.conf
+COPY pydistutils.cfg /root/.pydistutils.cfg
 
 VOLUME /opt/works
 

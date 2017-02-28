@@ -21,9 +21,6 @@ show_help() {
 
 # Run
 case "$1" in
-    bash)
-        /bin/bash "${@:2}"
-    ;;
     help)
         show_help
     ;;
