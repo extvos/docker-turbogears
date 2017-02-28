@@ -1,6 +1,6 @@
 FROM extvos/python
 MAINTAINER  "Mingcai SHEN <archsh@gmail.com>"
-RUN apk update && apk add alpine-sdk python-dev postgresql-client postgresql-libs py-mysqldb
+RUN apk update && apk add  --no-cache build-base python-dev postgresql-client postgresql-libs py-mysqldb
 RUN pip install --upgrade pip virtualenv circus \
 	&& cd /opt \
 	&& virtualenv tg2env \
