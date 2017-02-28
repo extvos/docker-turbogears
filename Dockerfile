@@ -10,7 +10,7 @@ RUN pip install --upgrade pip virtualenv circus \
 
 COPY pip.conf /root/.pip/pip.conf
 COPY pydistutils.cfg /root/.pydistutils.cfg
-
+COPY entrypoint.sh /entrypoint.sh
 VOLUME /opt/works
 
 EXPOSE 8080
