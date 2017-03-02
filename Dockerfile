@@ -1,7 +1,7 @@
 FROM extvos/python
 MAINTAINER  "Mingcai SHEN <archsh@gmail.com>"
 
-RUN apk update && apk add  --no-cache build-base linux-headers python-dev postgresql-client postgresql-libs py-mysqldb
+RUN apk update && apk add  --no-cache build-base linux-headers python-dev postgresql-client postgresql-libs py-mysqldb git mysql-client mariadb-libs mariadb-dev
 RUN pip install --upgrade pip virtualenv circus \
 	&& mkdir -p /opt && cd /opt \
 	&& virtualenv tg2env \
