@@ -12,6 +12,9 @@ COPY pydistutils.cfg /root/.pydistutils.cfg
 COPY circus.ini /etc/circus.ini
 
 RUN pip install --upgrade pip virtualenv circus \
+	&& mkdir -p /root/works && cd /root/works \
+	&& virtualenv tg2env \
+	&& . /root/works/tg2env/bin/activate \
 	tg.devtools gearbox-tools chaussette waitress simplejson requests psycopg2 pymongo redis mysql-python 
 
 	
