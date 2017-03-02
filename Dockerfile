@@ -1,17 +1,22 @@
 FROM extvos/python
 MAINTAINER  "Mingcai SHEN <archsh@gmail.com>"
 
-RUN apk update && apk add  --no-cache build-base linux-headers python-dev postgresql-client postgresql-libs py-mysqldb git mysql-client mariadb-libs mariadb-dev
-RUN pip install --upgrade pip virtualenv circus \
-	&& mkdir -p /opt && cd /opt \
-	&& virtualenv tg2env \
-	&& . /opt/tg2env/bin/activate \
-	&& pip install tg.devtools gearbox-tools chaussette waitress \
-	&& mkdir /opt/works /root/.pip
+RUN apk update && apk add  --no-cache build-base linux-headers python-dev postgresql-client postgresql-libs \
+	postgresql-dev git mysql-client mariadb-libs mariadb-dev supervisor  \
+	&& /usr/bin/echo_supervisord_conf > /etc/supervisord.conf \
+    && echo "[include]" >> /etc/supervisord.conf && echo "files = /etc/supervisor.d/*.ini" >> /etc/supervisord.conf
+	&& mkdir /root/.pip /root/works
 
 COPY pip.conf /root/.pip/pip.conf
 COPY pydistutils.cfg /root/.pydistutils.cfg
 
-VOLUME /opt/works
+RUN pip install --upgrade pip virtualenv circus \
+	tg.devtools gearbox-tools chaussette waitress simplejson requests psycopg2 pymongo redis mysql-python 
+
+	
+VOLUME /etc/supervisor.d/
+VOLUME /root/works
 
 EXPOSE 8080
+
+CMD ["supervisord", "-n"]
