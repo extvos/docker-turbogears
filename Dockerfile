@@ -7,8 +7,6 @@ RUN apk update && apk add  --no-cache build-base linux-headers python-dev postgr
     && echo "[include]" >> /etc/supervisord.conf && echo "files = /etc/supervisor.d/*.ini" >> /etc/supervisord.conf \
 	&& mkdir /root/.pip /root/works /etc/circus.d
 
-COPY pip.conf /root/.pip/pip.conf
-COPY pydistutils.cfg /root/.pydistutils.cfg
 COPY circus.ini /etc/circus.ini
 
 RUN pip install --upgrade pip virtualenv circus \
